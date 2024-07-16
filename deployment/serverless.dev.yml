@@ -1,0 +1,52 @@
+service: template-go
+frameworkVersion: '>=1.28.0'
+
+provider:
+  name: aws
+  runtime: provided.al2023
+  region: us-east-1
+  stage: dev
+  timeout: 30
+  apiGateway:
+    restApiId: sqbtyilwv2
+    restApiRootResourceId: ux5cuvogf0
+  deploymentBucket:
+    name: template-go
+    serverSideEncryption: AES256
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "lambda:InvokeFunction"
+      Resource: "*"
+
+plugins:
+  - serverless-plugin-cloudwatch-dashboard
+  - serverless-plugin-log-retention
+  - serverless-deployment-bucket
+
+custom:
+  dashboard:
+    lambda:
+      enabled: true
+
+functions:
+  api:
+    handler: bin/main
+    vpc:
+      securityGroupIds:
+        - sg-0c4e4e55916e5347b
+      subnetIds:
+        - subnet-0ea26ff639698c90e
+        - subnet-035a0a3883c91ef32
+    events:
+      - http:
+          method: ANY
+          path: /template-go
+      - http:
+          method: ANY
+          path: /template-go/{proxy+}
+
+package:
+  patterns:
+    - '!*/**'
+    - bin/main

@@ -1,0 +1,25 @@
+{
+    "name": "template-go",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Ashio23/template-go.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/Ashio23/template-go/issues"
+    },
+    "homepage": "https://github.com/Ashio23/template-go#readme",
+    "dependencies": {
+      "serverless": "^3.35.2",
+      "serverless-deployment-bucket": "^1.6.0",
+      "serverless-plugin-cloudwatch-dashboard": "^1.2.0",
+      "serverless-plugin-log-retention": "^2.0.0"
+    }
+  }
